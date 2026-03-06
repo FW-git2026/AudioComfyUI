@@ -1,0 +1,11 @@
+vscode:
+  - docker:
+      image:
+        name: nvcr.io/nvidia/pytorch:24.08-py3
+        dockerUser: "$oauthtoken"         # ← 固定写死
+        dockerPassword: "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"  # ← 你生成的 API Key
+    runner:
+      tags: cnb:arch:amd64:gpu
+    services:
+      - vscode
+      - docker

@@ -31,7 +31,7 @@ fi
 COMFYUI_DIR="/workspace/ComfyUI"
 if [ ! -d "$COMFYUI_DIR" ]; then
     echo "📥 克隆 ComfyUI..."
-    git clone https://github.com/comfyanonymous/ComfyUI.git "$COMFYUI_DIR"
+    git clone https://github.com/Comfy-Org/ComfyUI.git "$COMFYUI_DIR"
 else
     echo "✅ ComfyUI 已克隆，跳过。"
 fi

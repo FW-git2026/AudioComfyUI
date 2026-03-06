@@ -1,0 +1,65 @@
+# =============================================
+# ✅ ComfyUI 项目专用 .gitattributes 文件
+# 作用：指定哪些大文件或二进制文件应该由 Git LFS 管理，提升 Git 性能与仓库安全性
+# =============================================
+
+#
+# 🧠 模型文件（大文件，必须用 LFS！）
+#
+*.ckpt                            filter=lfs diff=lfs merge=lfs -text
+*.safetensors                     filter=lfs diff=lfs merge=lfs -text
+*.gguf                            filter=lfs diff=lfs merge=lfs -text
+*.pt                              filter=lfs diff=lfs merge=lfs -text
+*.pth                             filter=lfs diff=lfs merge=lfs -text
+*.onnx                            filter=lfs diff=lfs merge=lfs -text
+
+#
+# 🎥 视频文件（通常由 ComfyUI 输出，较大，建议 LFS）
+#
+*.mp4                             filter=lfs diff=lfs merge=lfs -text
+*.mov                             filter=lfs diff=lfs merge=lfs -text
+*.avi                             filter=lfs diff=lfs merge=lfs -text
+
+#
+# 🎵 音频文件
+#
+*.mp3                             filter=lfs diff=lfs merge=lfs -text
+*.wav                             filter=lfs diff=lfs merge=lfs -text
+*.flac                            filter=lfs diff=lfs merge=lfs -text
+
+#
+# 🗜️ 压缩包 / 打包文件
+#
+*.zip                             filter=lfs diff=lfs merge=lfs -text
+*.tar                             filter=lfs diff=lfs merge=lfs -text
+*.tar.gz                          filter=lfs diff=lfs merge=lfs -text
+*.rar                             filter=lfs diff=lfs merge=lfs -text
+*.7z                              filter=lfs diff=lfs merge=lfs -text
+
+#
+# 🧩 二进制文件 / 第三方库（谨慎使用，仅限项目交付的二进制，不包含虚拟环境！）
+#
+*.bin                             filter=lfs diff=lfs merge=lfs -text
+*.dll                             filter=lfs diff=lfs merge=lfs -text
+*.so                              filter=lfs diff=lfs merge=lfs -text
+*.dylib                           filter=lfs diff=lfs merge=lfs -text
+*.whl                             filter=lfs diff=lfs merge=lfs -text
+*.exe                             filter=lfs diff=lfs merge=lfs -text
+
+#
+# ❌ 以下内容已被移除 ❌（不推荐 / 有风险，不要跟踪虚拟环境或 torch 相关文件！）
+#   - venv*/**/*.so
+#   - venv*/**/torch/**
+#   - **/site-packages/torch/**
+#   - **/libtorch_*.so
+#   原因：这些是自动生成的、平台相关的二进制文件，不应该用 Git 管理，更不应该提交到仓库！
+#
+
+#
+# =============================================
+# 补充说明：
+# - 所有匹配以上扩展名的文件，都将由 Git LFS 进行管理（而不是 Git 原生方式）
+# - 确保你已安装并初始化了 git-lfs（运行过 `git lfs install`）
+# - 确保你的 Git 托管平台（如 GitHub / GitLab / 腾讯云）支持 Git LFS
+# - 与 .gitignore 文件配合使用，效果更佳
+# =============================================

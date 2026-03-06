@@ -39,6 +39,26 @@ else
 fi
 
 # =============================================
+# 1. 检查并安装 Git LFS（大文件支持）
+# =============================================
+
+echo "🔍 检查是否已安装 Git LFS..."
+
+if command -v git-lfs &> /dev/null; then
+  echo "✅ Git LFS 已安装，版本：$(git-lfs --version 2>/dev/null || echo '未知版本')"
+else
+  echo "⚠️  Git LFS 未安装，尝试通过 apt 安装..."
+  if apt-get update && apt-get install -y git-lfs; then
+    echo "✅ Git LFS 安装成功！"
+    git lfs install
+    echo "✅ Git LFS 已初始化。"
+  else
+    echo "❌ Git LFS 安装失败！某些仓库的大文件可能无法正确拉取。"
+    echo "   你可手动安装：https://git-lfs.com"
+  fi
+fi
+
+# =============================================
 # 3. 安装 aria2c（如未安装）
 # =============================================
 
